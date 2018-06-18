@@ -4,33 +4,51 @@
 作者：浪晋
 说明：实现对预期结果和实际结果的判断
 '''
-assertdict ={
-    "Equal": "==",
-    "NotEqual": "!=",
-    "Is": "is",
-    "IsNot": "is not",
-    "In": "in",
-    "NotIn": "not in"
-}
+
 def get_assert(validatas):
-    valilist = []
-    for vali in validatas:
-        value = list(vali.values())[0]
-        # aa = 
-        asserts = assertdict[str(list(vali.keys())[0])]
-        first = str(value[0])
-        second = str(value[1])
-        assertstr = first + asserts + second
-        valilist.append(assertstr)
-    return valilist
+    assertdict ={
+        "Equal": equal_validata,
+        "NotEqual": notequal_validata,
+        "Is": "is",
+        "IsNot": "is not",
+        "In": "in",
+        "NotIn": "not in"
+    }
+    fuclist = []
+    for value in validatas:
+        
+        key = list(value.keys())[0]
+        print("key:" ,key)
+        assrctfuc = assertdict[key]
+        fuclist.append(assrctfuc)
+    return fuclist
 
-
-def chick_validata(validatas):
+def equal_validata(validata):
     '''
     "validata":[{"Equal":200,200]},{}]
     '''
-    valilist = get_assert(validatas)
-    for vali in valilist:
-        print(vali)
-        assert eval(vali)
-        print("测试通过")
+    first = validata[0]
+    second = validata[1]
+    print(first,"==",second)
+    assert first == second
+
+def notequal_validata(validata):
+    '''
+    "validata":[{"Equal":200,200]},{}]
+    '''
+    first = validata[0]
+    second = validata[1]
+    print(first,"!=",second)
+    assert first != second
+
+def chick_response(validatas):
+    valilist = []
+    for value in validatas:
+        key = list(value.keys())[0]
+        print("key:" ,key)
+        valilist.append(value[key])
+    fuclist = get_assert(validatas)
+    num = 0
+    for fuc in fuclist:
+        fuc(valilist[num])
+        num += 1
