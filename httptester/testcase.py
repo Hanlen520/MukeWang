@@ -14,7 +14,7 @@ import json
         "json":{"username":"admin","password":"123456"},
         "headers":{"Content-Type": "application/json"}
     },
-    "validata":[200,200]
+    "validata":[{"Equal":[200,200]},{}]
 }
 '''
 def import_json_file(json_file_name):
@@ -22,9 +22,9 @@ def import_json_file(json_file_name):
         testcass = json.load(f)
     request = testcass.get("request")
     validata = testcass.get("validata")
-    if request not is None and validata not is None:
-        print(testcass)
-        return request, validata
+    if request != None  and validata != None:
+        # print(testcass)
+        return testcass
     else:
         print("用例中不存在我们需要的参数")
         exit()
@@ -36,7 +36,7 @@ def chick_json_type(json_file_name):
     json_type = json_file_name.split(".")
     # print(json_type)
     if json_type[1] == "json" and json_file_name.startswith("test"):
-        return json_file_name
+        return import_json_file(json_file_name)
     else:
         print("导入的用例格式不正确！")
         exit()
@@ -65,10 +65,17 @@ def chick_request_context(request):
     
 def chick_validata_context(validata):
     '''
-    "validata":[200,200]
+    "validata":[{"Equal":[200,200]},{}]
     '''
-    if len(validata["validata"]) == 2:
-        return validata
-    else:
-        print("validata不正确,请检查参数")
+    if not isinstance(validata,list):
+        print("validata不是一个字典格式,请检查参数")
         raise
+    for vali in validata:
+        #{"Equal":[200,200]} 
+        if not isinstance(vali,dict):
+            print("错误！")
+            raise
+        if not len(list(vali.values())[0]) == 2:
+            print("预期结果和实际结果数量不匹配")
+            raise
+    return validata

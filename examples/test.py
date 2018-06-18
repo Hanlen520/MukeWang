@@ -39,6 +39,7 @@ class TestDemo(unittest.TestCase):
         code = validata.get("code")
         self.assertEqual(code,200)
 
+
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     tests = [TestDemo("test_01"),TestDemo("test_02"),TestDemo("test_03"),TestDemo("test_login")]

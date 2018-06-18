@@ -5,11 +5,18 @@
 说明：实现对requests的二次封装
 '''
 import requests
+from testcase import chick_request_context
+requests.packages.urllib3.disable_warnings()
 
-def http_request(request):
-    method = request.pop("method")
-    url = request.pop("url")
-    kwargs = request
-    response = requests.request(method, url, **kwargs)
-    print(response.json())
-    return response
+class HttpCore():
+    def __init__(self,request):
+        self.request = chick_request_context(request)
+
+    def run(self):
+        request = self.request
+        method = request.pop("method")
+        url = request.pop("url")
+        kwargs = request
+        response = requests.request(method, url, **kwargs)
+
+        return response
