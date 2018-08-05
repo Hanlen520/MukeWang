@@ -1,9 +1,0 @@
-{   
-    "request" : {
-        "method":"POST",
-        "url":"http://127.0.0.1:8808/login",
-        "json":{"username":"admin","password":"123456"},
-        "headers":{"Content-Type": "application/json"}
-    },
-    "validata":[{"Equal":["resjson['code']","201"]}]
-}
