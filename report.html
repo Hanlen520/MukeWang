@@ -197,8 +197,8 @@
         
     <div class='page-header'>
         <h1>测试报告</h1>
-    <p class='attribute'><strong>开始时间:</strong> 2018-08-22 01:10:40</p>
-<p class='attribute'><strong>运行时长:</strong> 0:00:00.021104</p>
+    <p class='attribute'><strong>开始时间:</strong> 2018-08-22 02:05:27</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:00.075313</p>
 <p class='attribute'><strong>状态:</strong> 通过 1 失败 1</p>
 
     </div>
@@ -240,12 +240,12 @@
     </tr>
 
 <tr id='pt1.1' class='hiddenRow'>
-    <td class='none'><div class='testcase'>test_01</div></td>
+    <td class='none'><div class='testcase'>test_01_post</div></td>
     <td colspan='5' align='center'>通过</td>
 </tr>
 
 <tr id='ft1.2' class='none'>
-    <td class='failCase'><div class='testcase'>test_02</div></td>
+    <td class='failCase'><div class='testcase'>test_02_get</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
@@ -255,9 +255,9 @@
     <div id='div_ft1.2' class="popup_window">
         <pre>
         ft1.2: Traceback (most recent call last):
-  File "c:\workhome\HttpTest\test_demo.py", line 20, in test_02
-    self.assertEqual(1,2)
-AssertionError: 1 != 2
+  File "c:\workhome\HttpTest\test_demo.py", line 31, in test_02_get
+    self.assertEqual(code, 201)
+AssertionError: 200 != 201
 
         </pre>
     </div>
